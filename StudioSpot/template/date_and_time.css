@@ -1,0 +1,271 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #4f3f35;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 40px;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: black;
+}
+
+.profile-icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+/* Booking Section */
+.date-time-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.calendar {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.calendar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 500px;
+  margin-left: 120px;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar h3 {
+  font-size: 20px;
+  color: #5c4b51;
+  margin-bottom: 10px;
+}
+
+.nav-button {
+  background-color: #5c4b51;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #3c2f36;
+}
+
+.calendar table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.calendar th,
+.calendar td {
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+}
+
+.calendar td.active {
+  background-color: #5c4b51;
+  color: white;
+  border-radius: 50%;
+}
+
+.calendar td.day {
+  cursor: pointer;
+}
+
+.calendar td.selected {
+  background-color: #3c2e26; /* Blue for selected date */
+  color: white;
+  font-weight: bold;
+}
+
+.time-selection {
+  flex: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-slot {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  justify-items: center;
+}
+
+.time-slot button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #4f3f35;
+  border-color: #4f3f35;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.time-slot button:hover {
+  background-color: #666;
+}
+
+.time-slot button.occupied {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.time-slot button.selected {
+  background-color: #3c2e26; /* Solid color for selected time */
+  color: white;
+}
+
+.service-details {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f1e1d8;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.service-details p {
+  font-size: 18px;
+}
+
+.next-button {
+  padding: 10px 20px;
+  background-color: #5c4b51;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.next-button:hover {
+  background-color: #3c2f36;
+}
+
+footer {
+  background-color: #3c2e26;
+  text-align: center;
+  color: white;
+  padding: 30px 20px;
+}
+
+#prev-month {
+  margin-right: 5px;
+}
+
+#next-month {
+  margin-left: 5px;
+}
+
+/* Specific for selected elements */
+.selected {
+  background-color: #3c2e26; /* Solid color for selected time */
+  color: white;
+}
+
+.occupied {
+  background-color: #f44336; /* Red for occupied slots */
+  color: white;
+}
+
+.day.selected {
+  background-color: #3c2e26; /* Blue for selected date */
+  color: white;
+}
+
+.day.selected:hover {
+  background-color: #3c2e26; /* Darker blue when hovered */
+}
+.booking-section h1{
+  margin-left: 80px;
+  margin-top: -50px;
+}
+.booking-section p{
+  margin-left: 80px;
+}
+.booking-section h2{
+  margin-left: 80px;
+  margin-top: 40px;
+}
+.back-button img {
+  width: 40px; /* Adjust the size of the image */
+  height: 40px;
+  cursor: pointer; /* Change cursor to indicate it’s clickable */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.back-button img:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+   

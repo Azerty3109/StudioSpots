@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioSpot</title>
+    <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="studio_spot_logo.jpg" alt="StudioSpot Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="profile-icon">
+          <img src="account.png" alt="Profile Icon" id="account-icon" style="cursor: pointer;">
+        </div>
+    </nav>
+</header>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <button class="close-sidebar" id="close-btn">✖</button>
+  <div class="menu">
+      <a href="account_info.html" class="menu-link">
+          <img src="profile.png" alt="Account Info Icon" class="menu-icon">
+          Account Information
+      </a>
+
+      <a href="booking_schedule.html" class="menu-link">
+          <img src="schedule.png" alt="Booking Schedule Icon" class="menu-icon">
+          Booking Schedule
+      </a>
+  </div>
+  <div class="logout">
+      <img src="logout_icon.png" alt="Logout Icon" class="menu-icon">
+      Log Out
+  </div>
+</div>
+
+<script>
+    const accountIcon = document.getElementById('account-icon');
+    const sidebar = document.getElementById('sidebar'); 
+    const closeBtn = document.getElementById('close-btn');
+
+    function toggleOverlay(show) {
+      document.body.style.overflow = show ? 'hidden' : 'auto'; 
+    }
+    accountIcon.addEventListener('click', () => {
+      sidebar.classList.add('active'); 
+      toggleOverlay(true); 
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active'); 
+      toggleOverlay(false); 
+    });
+
+</script>
+  <section class="booking">
+    <div class="banner">
+      <h1>BOOK ONLINE</h1>
+    </div>
+    <div class="booking-details"> 
+      <div class="booking-image">
+        <img src="recording.png" alt="Studio Recording Room">
+      </div>
+      <div class="booking-info">
+        <h2>Recording</h2>
+        <div class="time-selection">
+          <button id="decrease">-</button>
+          <span id="hour-span">1 hour</span>
+          <button id="increase">+</button>
+        </div>
+        <p>PHP <span id="price">250</span></p>
+        <a href="date_and_time.html">
+          <button class="book-now">Book Now</button>
+        </a>        
+      </div>
+    </div>
+
+    <div class="booking-details"> 
+  <div class="booking-image">
+    <img src="musicians_band.jpg" alt="Studio Recording Room">
+  </div>
+  <div class="booking-info">
+    <h2>Band</h2>
+    <div class="time-selection">
+      <button id="decrease-band">-</button>
+      <span id="hour-span-band">1 hour</span>
+      <button id="increase-band">+</button>
+    </div>
+    <p>PHP <span id="price-band">250</span></p>
+    <a href="date_and_time.html">
+      <button class="book-now">Book Now</button>
+    </a>   
+  </div>
+</div>
+
+    
+  </section>
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StudioSpot. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Get references to the necessary elements
+    const decreaseButton = document.getElementById('decrease');
+    const increaseButton = document.getElementById('increase');
+    const hourSpan = document.getElementById('hour-span');
+    const priceSpan = document.getElementById('price');
+  
+    // Initial values
+    let hours = 1;
+    let price = 250;
+  
+    // Function to update the booking info
+    function updateBooking() {
+      hourSpan.textContent = `${hours} hour${hours > 1 ? 's' : ''}`;
+      priceSpan.textContent = price;
+    }
+  
+    // Event listener for increasing the hours (with 6-hour limit)
+    increaseButton.addEventListener('click', () => {
+      if (hours < 6) {  // Limit hours to 6
+        hours += 1;  // Add one hour
+        price = hours * 250;  // Update the price (250 PHP per hour)
+        updateBooking();
+      }
+    });
+  
+    // Event listener for decreasing the hours
+    decreaseButton.addEventListener('click', () => {
+      if (hours > 1) {  // Ensure hours don't go below 1
+        hours -= 1;
+        price = hours * 250;  // Update the price
+        updateBooking();
+      }
+    });
+
+     // Get references to the necessary elements for the Band section
+  const decreaseButtonBand = document.getElementById('decrease-band');
+  const increaseButtonBand = document.getElementById('increase-band');
+  const hourSpanBand = document.getElementById('hour-span-band');
+  const priceSpanBand = document.getElementById('price-band');
+
+  // Initial values
+  let hoursBand = 1;
+  let priceBand = 250;
+
+  // Function to update the booking info for the Band section
+  function updateBookingBand() {
+    hourSpanBand.textContent = `${hoursBand} hour${hoursBand > 1 ? 's' : ''}`;
+    priceSpanBand.textContent = priceBand;
+  }
+
+  // Event listener for increasing the hours (with 6-hour limit)
+  increaseButtonBand.addEventListener('click', () => {
+    if (hoursBand < 6) {  // Limit hours to 6
+      hoursBand += 1;  // Add one hour
+      priceBand = hoursBand * 250;  // Update the price (250 PHP per hour)
+      updateBookingBand();
+    }
+  });
+
+  // Event listener for decreasing the hours
+  decreaseButtonBand.addEventListener('click', () => {
+    if (hoursBand > 1) {  // Ensure hours don't go below 1
+      hoursBand -= 1;
+      priceBand = hoursBand * 250;  // Update the price
+      updateBookingBand();
+    }
+  });
+  </script>
+  
+</body>
+</html>

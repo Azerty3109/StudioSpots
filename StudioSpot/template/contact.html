@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioSpot</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="studio_spot_logo.jpg" alt="StudioSpot Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="profile-icon">
+            <img src="account.png" alt="Profile Icon" id="account-icon" style="cursor: pointer;">
+          </div>
+    </nav>
+</header>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <button class="close-sidebar" id="close-btn">✖</button>
+    <div class="menu">
+        <a href="account_info.html" class="menu-link">
+            <img src="profile.png" alt="Account Info Icon" class="menu-icon">
+            Account Information
+        </a>
+
+        <a href="booking_schedule.html" class="menu-link">
+            <img src="schedule.png" alt="Booking Schedule Icon" class="menu-icon">
+            Booking Schedule
+        </a>
+    </div>
+    <div class="logout">
+        <img src="logout_icon.png" alt="Logout Icon" class="menu-icon">
+        Log Out
+    </div>
+</div>
+
+<script>
+    const accountIcon = document.getElementById('account-icon');
+    const sidebar = document.getElementById('sidebar'); 
+    const closeBtn = document.getElementById('close-btn');
+
+    function toggleOverlay(show) {
+      document.body.style.overflow = show ? 'hidden' : 'auto'; 
+    }
+    accountIcon.addEventListener('click', () => {
+      sidebar.classList.add('active'); 
+      toggleOverlay(true); 
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active'); 
+      toggleOverlay(false); 
+    });
+
+</script>
+
+<section class="contact-us">
+    <div class="contact-header">
+        <div class="icon">
+            <img src="contact-us.png" alt="Mail Icon">
+        </div>
+        <h1>Contact Us</h1>
+    </div>
+    <form class="contact-form">
+        <div class="form-group">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+        </div>
+        <textarea placeholder="Message" rows="5" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+<footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StudioSpot. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioSpot</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="studio_spot_logo.jpg" alt="StudioSpot Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="profile-icon">
+          <img src="account.png" alt="Profile Icon" id="account-icon" style="cursor: pointer;">
+        </div>
+    </nav>
+  </header>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <button class="close-sidebar" id="close-btn">✖</button>
+  <div class="menu">
+      <a href="account_info.html" class="menu-link">
+          <img src="profile.png" alt="Account Info Icon" class="menu-icon">
+          Account Information
+      </a>
+
+      <a href="booking_schedule.html" class="menu-link">
+          <img src="schedule.png" alt="Booking Schedule Icon" class="menu-icon">
+          Booking Schedule
+      </a>
+  </div>
+  <div class="logout">
+      <img src="logout_icon.png" alt="Logout Icon" class="menu-icon">
+      Log Out
+  </div>
+</div>
+  
+  <script>
+      const accountIcon = document.getElementById('account-icon');
+      const sidebar = document.getElementById('sidebar'); 
+      const closeBtn = document.getElementById('close-btn');
+
+      function toggleOverlay(show) {
+        document.body.style.overflow = show ? 'hidden' : 'auto'; 
+      }
+      accountIcon.addEventListener('click', () => {
+        sidebar.classList.add('active'); 
+        toggleOverlay(true); 
+      });
+
+      closeBtn.addEventListener('click', () => {
+        sidebar.classList.remove('active'); 
+        toggleOverlay(false); 
+      });
+
+  </script>
+
+  <section class="hero">
+      <div class="hero-content">
+          <h1>StudioSpot</h1>
+          <a href="booking.html" class="btn">Book Now</a>
+      </div>
+  </section>
+  <section id="instruments">
+      <div class="instruments-container">
+        <h2>Our Instrument</h2>
+        <hr />
+        <div class="instrument-grid">
+          <div class="instrument-card">
+            <img class="instrument-image" src="drum-set.png" alt="Drums" />
+            <img class="instrument-image-hover" src="Pearl-Midtown-Drumset-2-2.webp" alt="New Image" />
+            <p>DRUMS</p>
+          </div>
+          <div class="instrument-card">
+            <img src="electric-guitar.png" alt="Electric Guitar" />
+            <img class="instrument-image-hover" src="fthQF7xz7V5coEShUuRUQZ.jpg" alt="New Image" />
+            <p>ELECTRIC GUITAR</p>
+          </div>
+          <div class="instrument-card">
+            <img src="bass-guitar.png" alt="Bass Guitar" />
+            <img class="instrument-image-hover" src="electric-bass-guitar.jpg" alt="New Image" />
+            <p>BASS GUITAR</p>
+          </div>
+          <div class="instrument-card">
+            <img src="keyboard.png" alt="Keyboard" />
+            <img class="instrument-image-hover" src="MillersBlogImage-2021-09-17T125310_433-700x467.webp" alt="New Image" />
+            <p>KEYBOARD</p>
+          </div>
+        </div>
+      </div>
+    </section>      
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StudioSpot. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

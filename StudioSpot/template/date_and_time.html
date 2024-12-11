@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioSpot</title>
+    <link rel="stylesheet" href="date_and_time.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="studio_spot_logo.jpg" alt="StudioSpot Logo">
+        </div>
+        <ul class="nav-links"> 
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="profile-icon">
+            <img src="account.png" alt="Profile Icon">
+        </div>
+    </nav>
+  </header>
+
+  <a href="booking.html" class="back-button">
+    <img src="back-button.png" alt="Back" />
+  </a>
+  
+  <!-- Booking Section -->
+  <section class="booking-section">
+    <h1>Recording</h1>
+    <p>Check out our availability and book the date and time that works for you.</p>
+    <h2>Select Date and Time</h2>
+
+    <div class="date-time-container">
+        <!-- Calendar Container -->
+        <div class="calendar-container">
+          <button class="nav-button" id="prev-month">&#8249;</button>
+          <div class="calendar">
+            <h3 id="calendar-month">December 2024</h3>
+            <table id="calendar-table">
+              <thead>
+                <tr>
+                  <th>Su</th>
+                  <th>Mo</th>
+                  <th>Tu</th>
+                  <th>We</th>
+                  <th>Th</th>
+                  <th>Fr</th>
+                  <th>Sa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Calendar days -->
+              </tbody>
+            </table>
+          </div>
+          <button class="nav-button" id="next-month">&#8250;</button>
+        </div>
+      
+      <!-- Time Slots -->
+      <div class="time-selection">
+        <h3>Available Times</h3>
+        <div class="time-slot" id="time-slots"></div>
+      </div>
+    </div>
+
+    <!-- Service Details -->
+    <div class="service-details">
+      <h3>Service Details</h3>
+      <p id="service-name">Recording</p>
+      <p id="service-time">Select a date and time</p>
+      <p id="service-price">PHP 250</p>
+      <a href="register.html">
+        <button class="next-button" id="next-button">Next</button>
+      </a>
+    </div>
+  </section>
+
+  <!-- JavaScript for Functionality -->
+  <script>
+    const currentDate = new Date();
+    let selectedDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+
+    const occupiedDates = [];
+    const occupiedTimes = {};
+
+    const calendarMonth = document.getElementById("calendar-month");
+    const calendarTable = document.getElementById("calendar-table").getElementsByTagName("tbody")[0];
+    const timeSlotsContainer = document.getElementById("time-slots");
+    const serviceTime = document.getElementById("service-time");
+
+    function formatMonth(year, month) {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return `${months[month]} ${year}`;
+    }
+
+    function generateCalendar() {
+      const firstDay = new Date(currentYear, currentMonth, 1);
+      const lastDay = new Date(currentYear, currentMonth + 1, 0);
+      const firstDayOfWeek = firstDay.getDay();
+      const lastDate = lastDay.getDate();
+
+      calendarTable.innerHTML = "";
+      let row = calendarTable.insertRow();
+      let dayOfWeek = firstDayOfWeek;
+
+      for (let i = 0; i < dayOfWeek; i++) row.insertCell();
+
+      for (let day = 1; day <= lastDate; day++) {
+        if (dayOfWeek === 7) {
+          dayOfWeek = 0;
+          row = calendarTable.insertRow();
+        }
+
+        const cell = row.insertCell();
+        const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        cell.textContent = day;
+
+        if (occupiedDates.includes(dateStr)) {
+          cell.classList.add("occupied");
+        } else {
+          cell.classList.add("day");
+          cell.addEventListener("click", () => selectDate(day, dateStr));
+        }
+
+        dayOfWeek++;
+      }
+
+      calendarMonth.textContent = formatMonth(currentYear, currentMonth);
+    }
+
+    function selectDate(day, dateStr) {
+      selectedDate = new Date(currentYear, currentMonth, day);
+      serviceTime.textContent = `Recording on ${selectedDate.toDateString()}`;
+      generateTimeSlots(dateStr);
+      
+      // Set selected date color
+      document.querySelectorAll(".day").forEach((cell) => {
+        cell.classList.remove("selected");
+      });
+      document.querySelector(`[data-date="${dateStr}"]`).classList.add("selected");
+    }
+
+    function generateTimeSlots(dateStr) {
+      const times = ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM"];
+      timeSlotsContainer.innerHTML = "";
+
+      times.forEach((time) => {
+        const button = document.createElement("button");
+        button.textContent = time;
+
+        if (occupiedTimes[dateStr]?.includes(time)) {
+          button.classList.add("occupied");
+        } else {
+          button.addEventListener("click", () => selectTime(dateStr, time, button));
+        }
+
+        timeSlotsContainer.appendChild(button);
+      });
+    }
+
+    function selectTime(dateStr, time, button) {
+      // Toggle selected time slot
+      if (!button.classList.contains("selected")) {
+        button.classList.add("selected");
+        updateServiceTime(dateStr);
+      } else {
+        button.classList.remove("selected");
+        updateServiceTime(dateStr);
+      }
+    }
+
+    function updateServiceTime(dateStr) {
+      const selectedTimes = [];
+      document.querySelectorAll(`#time-slots button.selected`).forEach((button) => {
+        selectedTimes.push(button.textContent);
+      });
+
+      if (selectedTimes.length > 0) {
+        serviceTime.textContent = `Recording on ${selectedDate.toDateString()} at ${selectedTimes[0]} - ${selectedTimes[selectedTimes.length - 1]}`;
+      }
+    }
+
+    document.getElementById("prev-month").addEventListener("click", () => {
+      currentMonth--;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      }
+      generateCalendar();
+    });
+
+    document.getElementById("next-month").addEventListener("click", () => {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      generateCalendar();
+    });
+
+    generateCalendar();
+
+    document.querySelectorAll('.calendar td.day').forEach(cell => {
+  cell.addEventListener('click', () => {
+    // Remove selected class from all days
+    document.querySelectorAll('.calendar td.day').forEach(day => day.classList.remove('selected'));
+    // Add selected class to the clicked day
+    cell.classList.add('selected');
+  });
+});
+
+  </script>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StudioSpot. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

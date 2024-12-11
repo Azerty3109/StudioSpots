@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioSpot</title>
+    <link rel="stylesheet" href="about_us.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="studio_spot_logo.jpg" alt="StudioSpot Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="profile-icon">
+            <img src="account.png" alt="Profile Icon" id="account-icon" style="cursor: pointer;">
+          </div>
+    </nav>
+</header>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <button class="close-sidebar" id="close-btn">✖</button>
+    <div class="menu">
+        <a href="account_info.html" class="menu-link">
+            <img src="profile.png" alt="Account Info Icon" class="menu-icon">
+            Account Information
+        </a>
+
+        <a href="booking_schedule.html" class="menu-link">
+            <img src="schedule.png" alt="Booking Schedule Icon" class="menu-icon">
+            Booking Schedule
+        </a>
+    </div>
+    <div class="logout">
+        <img src="logout_icon.png" alt="Logout Icon" class="menu-icon">
+        Log Out
+    </div>
+</div>
+
+<script>
+    const accountIcon = document.getElementById('account-icon');
+    const sidebar = document.getElementById('sidebar'); 
+    const closeBtn = document.getElementById('close-btn');
+
+    function toggleOverlay(show) {
+      document.body.style.overflow = show ? 'hidden' : 'auto'; 
+    }
+    accountIcon.addEventListener('click', () => {
+      sidebar.classList.add('active'); 
+      toggleOverlay(true); 
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active'); 
+      toggleOverlay(false); 
+    });
+
+</script>
+<body>
+    <section class="about-us">
+        <div class="content">
+            <h1>ABOUT US</h1>
+            <p>
+                Welcome to StudioSpot, your go-to platform for discovering and booking music studios effortlessly.
+                We are dedicated to connecting musicians, producers, and creators with top-tier studios that suit
+                their needs, all in one convenient place.
+            </p>
+            <p>
+                Our mission is to simplify the creative process by offering a seamless booking experience, enabling
+                you to focus on what truly matters—making music. Whether you’re a seasoned professional or just
+                starting your musical journey, StudioSpot is here to provide you with the tools, spaces, and
+                inspiration you need to bring your sound to life.
+            </p>
+            <p>At StudioSpot, creativity finds its perfect match.</p>
+        </div>
+        <div class="image">
+            <img src="about_us_bg.png" alt="Music Studio">
+        </div>
+    </section>
+    <footer>
+        <div class="footer-bottom">
+          <p>&copy; 2024 StudioSpot. All rights reserved.</p>
+        </div>
+      </footer>
+</body>
+</html>

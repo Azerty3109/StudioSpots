@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioSpot</title>
+    <link rel="stylesheet" href="register.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="studio_spot_logo.jpg" alt="StudioSpot Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="profile-icon">
+            <img src="account.png" alt="Profile Icon">
+        </div>
+    </nav>
+</header>
+
+<a href="date_and_time.html" class="back-button">
+    <img src="back-button.png" alt="Back" />
+  </a>
+
+<section class="client-details">
+    <header class="header">
+        <div class="header-overlay">
+            <h1>Client Details</h1>
+        </div>
+    </header>
+    <hr class="divider">
+    <form class="details-form">
+        <div class="form-group">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+        </div>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="text" placeholder="Username" required>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="button" id="toggle-password" class="show-password">
+                <i class="fas fa-eye"></i> 
+            </button>
+        </div> 
+        <button type="submit" class="submit-button">Submit</button>
+        <p class="login-text">
+            Already have an account? <a href="login.html">Login</a>
+        </p>
+    </form>
+</section>
+
+<script>
+    const passwordField = document.getElementById('password');
+    const togglePasswordButton = document.getElementById('toggle-password');
+    const icon = togglePasswordButton.querySelector('i');
+
+    togglePasswordButton.addEventListener('click', () => {
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.classList.remove('fa-eye'); // Change to "hide" icon
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            icon.classList.remove('fa-eye-slash'); // Change back to "show" icon
+            icon.classList.add('fa-eye');
+        }
+    });
+  </script>
+  
+<footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StudioSpot. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
